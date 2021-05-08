@@ -70,6 +70,7 @@ while True:
             # 현재가가 최고가 대비 하루 변동폭의 50% 이상인 경우 no sell
             # 이 경우 다음날 폭락있을 경우에도 현재가가 최고가 대비 변동폭 50% 범위내에 있을 경우 계속 홀딩하게 됨
             # 따라서 현재 가격이 전일 최저가 이상일 경우에만 홀딩 조치 
+            current_price = get_current_price("KRW-DOGE")
             if current_price > df.iloc[-1]['decision_price'] and current_price > df.iloc[-1]['prev_low']:
                 pass
             else:
