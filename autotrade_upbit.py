@@ -86,21 +86,21 @@ while True:
             # else:
             #     print("현재가({0})가 목표가({1})보다 낮다. buy조건 불성립".format(current_price, target_price))
 
-        else:
+        elif current_price > df.iloc[-1]['decision_price'] and current_price > df.iloc[-1]['prev_low']:
             # 현재가가 최고가 대비 하루 변동폭의 50% 이상인 경우 no sell
             # 이 경우 다음날 폭락있을 경우에도 현재가가 최고가 대비 변동폭 50% 범위내에 있을 경우 계속 홀딩하게 됨
             # 따라서 현재 가격이 전일 최저가 이상일 경우에만 홀딩 조치 
-            if current_price > df.iloc[-1]['decision_price'] and current_price > df.iloc[-1]['prev_low']:
+            
             # 매도는 당일 결정가 기준 및 전일 저가 기준으로 결정
             # print("현재가({0})가 매도기준가({1})보다 높거나 전일저가({2})보다 높아 sell조건 \
             #       불성립".format(current_price, df.iloc[-1]['decision_price'], df.iloc[-1]['prev_low']))
             # df.to_excel("test5.xlsx")
                 # log 남기기(현재가, 기준가, 전일저가, no sell 기록 남기기)
                 pass
-            else:
-                coin = get_balance("DOGE")
-                if coin > 1:
-                    upbit.sell_market_order("KRW-DOGE", doge*0.9995)
+         else:
+            coin = get_balance("DOGE")
+            if coin > 1:
+                    upbit.sell_market_order("KRW-DOGE", coin*0.9995)
                     sheet.append([now, current_price, high, low, '0.5', ref_price, prev_low, 'sell'])
                     wb.save('upbit_deal_data.xlsx')
                     # log 남기기(현재가, 기준가, 전일저가, sell 기록 남기기)
