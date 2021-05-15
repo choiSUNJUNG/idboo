@@ -80,7 +80,7 @@ while True:
             # if target_price < current_price and ma15 < current_price:
                 krw = get_balance("KRW")
                 if krw > 5000:
-                    upbit.buy_market_order("KRW-DOGE", krw*0.9995)
+                    upbit.buy_market_order("KRW-DOGE", krw*0.9)     # 원화의 90% 금액으로 buy
                     sheet.append([now, current_price, high, low, '0.5', ref_price, prev_low, 'buy'])
                     wb.save('upbit_deal_data.xlsx')
             else:
