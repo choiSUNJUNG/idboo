@@ -21,7 +21,7 @@ def get_start_time(ticker):
 def get_ma15(ticker):
     """15일 이동 평균선 조회"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=25)
-    df['ma15'] = df['low'].rolling(15).mean()
+    df['ma15'] = df['close'].rolling(15).mean()
     # ma15 = df['close'].rolling(15).mean().iloc[-1]
     # return ma15
     return df
